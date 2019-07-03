@@ -21,3 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //admin
 Route::resource('admin','admincontroller');
+
+//transaksi
+Route::get('transaksi/tambahdata','transaksicontroller@tambahdata');
+Route::post('transaksi','transaksicontroller@importtransaksi');
+Route::get('transaksi/listdata','transaksicontroller@listdata');
+Route::post('tambahtransaksi','transaksicontroller@tambah');
+Route::get('/detailtransaksi/{kode}','transaksicontroller@caridetail');
