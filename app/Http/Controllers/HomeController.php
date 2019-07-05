@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +23,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+         $pending = DB::table('tb_transaksi')
+        ->where('status','pending')
+        ->count();
+
+        $dikirim = DB::table('tb_transaksi')
+        ->where('status','dikirim')
+        ->count();
+
+        $sukses = DB::table('tb_transaksi')
+        ->where('status','sukses')
+        ->count();
+
+        $dicancel = DB::table('tb_transaksi')
+        ->where('status','dicancel')
+        ->count();
+        return view('home',['pending'=>$pending,'dikirim'=>$dikirim,'sukses'=>$sukses,'dicancel'=>$dicancel]);
     }
 }
