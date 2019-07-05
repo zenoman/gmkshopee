@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="#"><img src="{{asset('assets/img/logo/logo.png')}}" alt="" /></a>
+                        <a style="color:white;"><h3 style="margin-bottom: 0px;"><i class="fa fa-rocket"></i> SMS</h3></a>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -219,9 +219,9 @@
                         </li>
                         <li><a data-toggle="tab" href="#Interface"><i class="fa fa-list"></i> Transaksi</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Charts"><i class="fa fa-file"></i> Laporan</a>
+                        <li><a href="{{url('laporan/caridata')}}"><i class="fa fa-file"></i> Laporan</a>
                         </li>
-                        <li><a data-toggle="tab" href="#Tables"><i class="fa fa-download"></i> Backup</a>
+                        <li><a href="{{url('backup/caridata')}}"><i class="fa fa-download"></i> Backup</a>
                         </li>
                         <!-- <li><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i> Forms</a>
                         </li>
@@ -238,84 +238,15 @@
                                 </li>
                                 <li><a href="{{url('transaksi/listdata')}}">Daftar Transaksi</a>
                                 </li>
-                                <li><a href="data-map.html">Daftar Transaksi Terkirim</a>
+                                <li><a href="{{url('transaksi/listdatadikirim')}}">Daftar Transaksi Terkirim</a>
                                 </li>
-                                <li><a href="code-editor.html">Daftar Transaksi Dicancel</a>
+                                <li><a href="{{url('transaksi/listdatacancel')}}">Daftar Transaksi Dicancel</a>
                                 </li>
-                                <li><a href="image-cropper.html">Daftar Transaksi Sukses</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="flot-charts.html">Flot Charts</a>
-                                </li>
-                                <li><a href="bar-charts.html">Bar Charts</a>
-                                </li>
-                                <li><a href="line-charts.html">Line Charts</a>
-                                </li>
-                                <li><a href="area-charts.html">Area Charts</a>
+                                <li><a href="{{url('transaksi/listdatasukses')}}">Daftar Transaksi Sukses</a>
                                 </li>
                             </ul>
                         </div>
-                        <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="normal-table.html">Normal Table</a>
-                                </li>
-                                <li><a href="data-table.html">Data Table</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="form-elements.html">Form Elements</a>
-                                </li>
-                                <li><a href="form-components.html">Form Components</a>
-                                </li>
-                                <li><a href="form-examples.html">Form Examples</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="Appviews" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="notification.html">Notifications</a>
-                                </li>
-                                <li><a href="alert.html">Alerts</a>
-                                </li>
-                                <li><a href="modals.html">Modals</a>
-                                </li>
-                                <li><a href="buttons.html">Buttons</a>
-                                </li>
-                                <li><a href="tabs.html">Tabs</a>
-                                </li>
-                                <li><a href="accordion.html">Accordion</a>
-                                </li>
-                                <li><a href="dialog.html">Dialogs</a>
-                                </li>
-                                <li><a href="popovers.html">Popovers</a>
-                                </li>
-                                <li><a href="tooltips.html">Tooltips</a>
-                                </li>
-                                <li><a href="dropdown.html">Dropdowns</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="Page" class="tab-pane notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="contact.html">Contact</a>
-                                </li>
-                                <li><a href="invoice.html">Invoice</a>
-                                </li>
-                                <li><a href="typography.html">Typography</a>
-                                </li>
-                                <li><a href="color.html">Color</a>
-                                </li>
-                                <li><a href="login-register.html">Login Register</a>
-                                </li>
-                                <li><a href="404.html">404 Page</a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

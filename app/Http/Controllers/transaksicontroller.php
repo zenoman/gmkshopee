@@ -32,10 +32,20 @@ class transaksicontroller extends Controller
 
     public function listdata(){
         $data = DB::table('tb_transaksi')
+        ->where('status','pending')
         ->groupby('no_resi')
         ->orderby('id','desc')
         ->paginate(20);
         return view('transaksi/listdata',['data'=>$data]);
+    }
+
+    public function listdatadikirim(){
+        $data = DB::table('tb_transaksi')
+        ->where('status','dikirim')
+        ->groupby('no_resi')
+        ->orderby('id','desc')
+        ->paginate(20);
+        return view('transaksi/listdatadikirim',['data'=>$data]);
     }
 
     public function tambah(Request $request){
@@ -81,5 +91,64 @@ class transaksicontroller extends Controller
     public function caridetail($kode){
         $data = DB::table('tb_transaksi')->where('no_resi',$kode)->get();
         return response()->json($data);
+    }
+
+    public function kirimdata($kode){
+        $data = DB::table('tb_transaksi')
+        ->where('no_resi',$kode)
+        ->update([
+            'status'=>'dikirim'
+        ]);
+        return back()->with('status','Data Berhasil Dikirim');
+
+    }
+
+    public function canceldata($kode){
+        $data = DB::table('tb_transaksi')
+        ->where('no_resi',$kode)
+        ->update([
+            'status'=>'dicancel'
+        ]);
+        return back()->with('status','Transaksi Berhasil Dicancel');
+    }
+
+    public function listdatacancel(){
+        $data = DB::table('tb_transaksi')
+        ->where('status','dicancel')
+        ->groupby('no_resi')
+        ->orderby('id','desc')
+        ->paginate(20);
+        return view('transaksi/listdatacancel',['data'=>$data]);
+    }
+
+    public function suksesdata($kode){
+        $data = DB::table('tb_transaksi')
+        ->where('no_resi',$kode)
+        ->update([
+            'status'=>'sukses'
+        ]);
+        return back()->with('status','Transaksi Sukses');
+    }
+    public function hapusdata($kode){
+        DB::table('tb_transaksi')->where('no_resi',$kode)->delete();
+        return back()->with('status','Data Berhasil Dihapus');
+    }
+
+    public function listdatasukses(){
+        $data = DB::table('tb_transaksi')->where('status','sukses')->paginate(20);
+        return view('transaksi/listdatasukses',['data'=>$data]);
+    }
+
+    public function carisemuadata(Request $request){
+        $cari = $request->cari;
+        $data = 
+        DB::table('tb_transaksi')
+        ->where('no_resi','like','%'.$cari.'%')
+        ->orwhere('no_pesanan','like','%'.$cari.'%')
+        ->orwhere('waktu_pesan','like','%'.$cari.'%')
+        ->orwhere('username','like','%'.$cari.'%')
+        ->groupby('no_resi')
+        ->get();
+        return view('transaksi/hasilcari',['data'=>$data,'cari'=>$cari]);
     }
 }

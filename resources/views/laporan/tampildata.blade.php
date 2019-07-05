@@ -15,13 +15,20 @@
                     <i class="fa fa-list"></i>
                   </div>
                   <div class="breadcomb-ctn">
-                    <h2>Transaksi</h2>
-                    <p>List Data Transaksi</p>
+                    <h2>Laporan</h2>
+                    <p>List Data Transaksi Tanggal <b>{{$tglmulai}}</b> Sampai Tanggal <b>{{$tglsampai}}</b> 
+                      @if($status=='semua')
+                      Semua Status
+                      @else
+                      Status : {{$status}}
+                      @endif
+                    </p>
                   </div>
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3 text-right">
-                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalone"><i class="fa fa-search"></i> Cari Data</button>
+                  <button type="button" class="btn btn-info" id="btncetak"><i class="fa fa-print"></i> Print</button>
+                 <button type="button" class="btn btn-danger" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i> Kembali</button>
                 
               </div>
             </div>
@@ -65,7 +72,25 @@
 
                                       <td>{{$row->waktu_pesan}}</td>
                                       <td>{{$row->username}}</td>
-                                      <td>{{$row->status}}</td>
+                                      <td>
+                                        @if($row->status=='pending')
+                                        <span class="label label-info">
+                                          {{$row->status}}
+                                        </span>
+                                        @elseif($row->status=='sukses')
+                                        <span class="label label-success">
+                                          {{$row->status}}
+                                        </span>
+                                        @elseif($row->status=='dikirim')
+                                        <span class="label label-primary">
+                                          {{$row->status}}
+                                        </span>
+                                        @else
+                                        <span class="label label-danger">
+                                          {{$row->status}}
+                                        </span>
+                                        @endif
+                                      </td>
                                       <td>
                                         <button 
                                         class="btn btn-sm btn-default tampil"
@@ -77,11 +102,11 @@
                                         data-status="{{$row->status}}"
                                         data-haruskirim="{{$row->waktu_harus_dikirim}}">
                                           <i class="fa fa-eye"></i>
-                                        </button>
+                                        </button><!-- 
                                         <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-sm btn-primary"><i class="fa fa-truck"></i></a>
                                         <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
                                         <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>
-                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> -->
                                       </td>
                                   </tr>
                                   @endforeach
@@ -98,7 +123,6 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                             {{ $data->links() }}
                         </div>
                     </div>
                 </div>
@@ -184,28 +208,53 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="myModalone" role="dialog">
-                                    <div class="modal-dialog modals-default">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <h2>Cari dari semua data</h2>
-                        <form action="{{url('transaksi/caridata')}}" method="get">
-                       <div class="form-example-int mg-t-15">
-                            <div class="form-group">
-                                <div class="nk-int-st">
-                                    <input type="text" name="cari" class="form-control input-sm" placeholder="Masukan no. resi / no. pemesanan / waktu pesan / pemesan" required>
+                                <div id="hidden_div" style="display: none;">
+                                  <h4>List Data Transaksi Tanggal <b>{{$tglmulai}}</b> Sampai Tanggal <b>{{$tglsampai}}</b>
+                                    @if($status=='semua')
+                      Semua Status
+                      @else
+                      Status : {{$status}}
+                      @endif
+                                  </h4>
+                                <table width="100%" border="1">
+                                  <tr>
+                                        <th>No</th>
+                                        <th>No. Resi</th>
+                                        <th>No. Pesanan</th>
+                                        <th>Waktu Pesan</th>
+                                        <th>Pemesan</th>
+                                        <th>Status</th>
+                                        <th>Produk</th>
+                                        <th>Variasi</th>
+                                        <th>Jumlah</th>
+                                        <th>Harga</th>
+                                        <th>SKU</th>
+                                        <th>SKU Induk</th>
+                                  </tr>
+                                  <tr>
+                                    <?php $i=1;?>
+                                  @foreach($data as $row)
+                                  <tr>
+                                      <td>{{$i++}}</td>
+                                      <td>{{$row->no_resi}}</td>
+                                      <td>{{$row->no_pesanan}}</td>
+
+                                      <td>{{$row->waktu_pesan}}</td>
+                                      <td>{{$row->username}}</td>
+                                      <td>{{$row->status}}
+                                      </td>
+                                      <td>{{$row->produk}}</td>
+                                      <td>{{$row->nama_variasi}}</td>
+                                      <td>{{$row->jumlah}}</td>
+                                      <td>{{$row->harga}}</td>
+                                      <td>{{$row->sku}}</td>
+                                      <td>{{$row->sku_induk}}</td>
+                                  </tr>
+                                  @endforeach
+                                  </tr>
+                                </table>     
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-example-int mg-t-15">
-                            <button type="submit" class="btn btn-success notika-btn-success waves-effect">Cari</button>
-                             <button type="button" class="btn btn-danger notika-btn-danger waves-effect" data-dismiss="modal">Close</button>
-                        </div>
-                        </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                             
 @endsection
 @section('js')
  <script src="{{asset('assets/js/data-table/jquery.dataTables.min.js')}}"></script>
@@ -214,7 +263,7 @@
   $(document).ready(function() {
      $('#data-table-basic').DataTable({
             responsive: true,
-            "paging":false
+            "paging":true
         });
   });
 
@@ -261,5 +310,16 @@
             });
     $('#myModalthree').modal('toggle');
   });
+  $('#btncetak').click(function(){
+        
+         var print_div = document.getElementById("hidden_div");
+var print_area = window.open();
+print_area.document.write(print_div.innerHTML);
+print_area.document.close();
+print_area.focus();
+print_area.print();
+print_area.close();
+        
+        });
     </script>
 @endsection

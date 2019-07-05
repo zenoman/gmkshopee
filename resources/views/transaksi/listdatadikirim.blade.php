@@ -16,14 +16,11 @@
                   </div>
                   <div class="breadcomb-ctn">
                     <h2>Transaksi</h2>
-                    <p>List Data Transaksi</p>
+                    <p>List Data Transaksi Terkirim</p>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3 text-right">
-                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalone"><i class="fa fa-search"></i> Cari Data</button>
-                
-              </div>
+
             </div>
           </div>
         </div>
@@ -78,7 +75,7 @@
                                         data-haruskirim="{{$row->waktu_harus_dikirim}}">
                                           <i class="fa fa-eye"></i>
                                         </button>
-                                        <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-sm btn-primary"><i class="fa fa-truck"></i></a>
+                                        <!-- <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-sm btn-primary"><i class="fa fa-truck"></i></a> -->
                                         <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
                                         <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>
                                         <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
@@ -158,7 +155,7 @@
                                                   </tr>
                                                 </table>
                                           <hr>      
-                            <table class="table table-bordered">
+                            <table class="table table-sc-ex">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -180,28 +177,6 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="myModalone" role="dialog">
-                                    <div class="modal-dialog modals-default">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <h2>Cari dari semua data</h2>
-                        <form action="{{url('transaksi/caridata')}}" method="get">
-                       <div class="form-example-int mg-t-15">
-                            <div class="form-group">
-                                <div class="nk-int-st">
-                                    <input type="text" name="cari" class="form-control input-sm" placeholder="Masukan no. resi / no. pemesanan / waktu pesan / pemesan" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-example-int mg-t-15">
-                            <button type="submit" class="btn btn-success notika-btn-success waves-effect">Cari</button>
-                             <button type="button" class="btn btn-danger notika-btn-danger waves-effect" data-dismiss="modal">Close</button>
-                        </div>
-                        </form>
                                             </div>
                                         </div>
                                     </div>
