@@ -24,8 +24,11 @@ Route::get('/transaksi/listdatacancel','transaksicontroller@listdatacancel');
 Route::get('/transaksi/hapus/{kode}','transaksicontroller@hapusdata');
 Route::get('transaksi/listdatasukses','transaksicontroller@listdatasukses');
 Route::get('transaksi/caridata','transaksicontroller@carisemuadata');
+
+//laporan
 Route::get('laporan/caridata','laporancontroller@cari');
 Route::get('laporan/tampil','laporancontroller@tampil');
+Route::get('export-laporan/{mulai}/{sampai}/{status}','laporancontroller@exsportlaporan');
 
 //backup
 Route::get('backup/caridata','backupcontroller@caridata');

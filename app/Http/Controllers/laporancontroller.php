@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Exports\laporanexport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 
 class laporancontroller extends Controller
@@ -54,5 +56,15 @@ class laporancontroller extends Controller
     	}
 
     	return view('laporan/tampildata',['data'=>$data,'data2'=>$data2,'tglmulai'=>$tglmulai,'tglsampai'=>$tglsampai,'status'=>$status]);
+    }
+    //==============================================================
+    public function exsportlaporan($mulai, $sampai, $status){
+       
+         if($status=='semua'){
+         $namafile = "transaksi_tanggal_".$mulai."_sampai_".$sampai."_semua_status.xlsx";   
+        }else{
+            $namafile = "transaksi_tanggal_".$mulai."_sampai_".$sampai."_".$status."xlsx";
+        }
+     return Excel::download(new laporanexport($mulai,$sampai,$status),$namafile);
     }
 }

@@ -27,6 +27,7 @@
                 </div>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3 text-right">
+                  <a href="{{url('export-laporan/'.$tglmulai.'/'.$tglsampai.'/'.$status)}}" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Exsport excel</a>
                   <button type="button" class="btn btn-info" id="btncetak"><i class="fa fa-print"></i> Print</button>
                  <button type="button" class="btn btn-danger" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i> Kembali</button>
                 

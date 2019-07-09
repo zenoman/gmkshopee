@@ -48,12 +48,15 @@
                             </div>
                         </div>
                         <hr>
+                        <?php 
+                          $status = 'dipending';
+                        ?>
                         <div class="row">
                           
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                 <a href="#" id="cetakpending">
                                 <div class="invoice-hs">
-                                    <span>Cetak Data Transaksi Pending</span>
+                                    <span>Exsport Transaksi Pending</span>
                                     <h2>{{$pending}} Data</h2>
                                 </div>
 
