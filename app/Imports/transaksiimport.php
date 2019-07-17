@@ -41,13 +41,14 @@ class transaksiimport implements ToCollection
         		'no_pesanan'	=> $row[1],
         		'waktu_pesan'	=> $waktu_pesan[0],
         		'username'		=> $row[5],
-        		'waktu_harus_dikirim'	=> $waktu_kirim[0],
+        		'waktu_harus_dikirim' => $waktu_kirim[0],
         		'produk'	=> $produk[1],
         		'nama_variasi'=> $variasi[1],
         		'harga'=> $harga[1],
         		'jumlah'=>$jumlah[1],
         		'sku'=>$sku[1],
-        		'sku_induk'=>$sku_induk[1] 
+        		'sku_induk'=>$sku_induk[1],
+                'penerima'=>$row[10] 
                 ];
 					unset($dataproduk);
                     $dataproduk = array();

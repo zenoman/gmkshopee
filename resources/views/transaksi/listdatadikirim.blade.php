@@ -48,6 +48,7 @@
                                         <th>No. Pesanan</th>
                                         <th>Waktu Pesan</th>
                                         <th>Pemesan</th>
+                                        <th>Penerima</th>
                                         <th>Status</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
@@ -62,6 +63,7 @@
 
                                       <td>{{$row->waktu_pesan}}</td>
                                       <td>{{$row->username}}</td>
+                                      <td>{{$row->penerima}}</td>
                                       <td>{{$row->status}}</td>
                                       <td>
                                         <button 
@@ -90,6 +92,7 @@
                                         <th>No. Pesanan</th>
                                         <th>Waktu Pesan</th>
                                         <th>Pemesan</th>
+                                        <th>Penerima</th>
                                         <th>Status</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
