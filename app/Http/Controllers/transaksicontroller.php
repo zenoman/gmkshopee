@@ -151,4 +151,16 @@ class transaksicontroller extends Controller
         ->get();
         return view('transaksi/hasilcari',['data'=>$data,'cari'=>$cari]);
     }
+    // +++++++++++++++++++++++++++++++API ANDROID++++++++++++++++++++++++++++++++++++++++++++++
+    function getket($id){
+        $data=DB::table('tb_transaksi')
+        ->where('no_resi',$id)
+        ->get();        
+        if($data){
+            return response()->json(data);
+        }else{
+            return response()->json(data);
+        }
+       
+    }
 }

@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('list-kirim/{id}','api@getket');
+Route::post('up-kirim','api@upstat');
+Route::post('up-tarik','api@uptarik');
