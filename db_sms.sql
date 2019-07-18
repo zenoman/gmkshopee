@@ -12,10 +12,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for db_sms
-DROP DATABASE IF EXISTS `db_sms`;
-CREATE DATABASE IF NOT EXISTS `db_sms` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `db_sms`;
+
 
 -- Dumping structure for table db_sms.migrations
 DROP TABLE IF EXISTS `migrations`;

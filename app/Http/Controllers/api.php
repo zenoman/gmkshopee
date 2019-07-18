@@ -42,4 +42,46 @@ function uptarik(Request $req){
         return response()->json(['msg'=>'Gagal Ditarik']);
     }
 }
+function login(Request $req){    
+    $username = $req->username;
+    $mypassword = $req->password;
+    $data = DB::table('users')
+    ->where('username',$username)
+    ->count();
+    
+    if($data > 0){
+        $datausers = DB::table('users')
+        ->where('username',$username)
+        ->orWhere('email',$username)
+        ->get();
+        
+        foreach ($datausers as $du) {
+            $id = $du->id;
+            $mypass = $du->password;
+        }
+
+        if(Hash::check($mypassword,$mypass)){
+                return response()->json(['status'=>'1','msg'=>'Berhasil Login','user'=>$datausers]);
+        }else{
+            return response()->json(['status'=>'0','msg'=>'Maaf Password anda Tidak Sesuai']);
+        }
+    }else{
+        return response()->json(['status'=>'2','msg'=>'Maaf, Pengguna Belum Terdaftar']);
+    }
+    
+}
+function upakun(Request $req){
+    $kode=$req->kode;
+    $username=$req->username;
+    $data=DB::table('users')
+    ->where('id',$kode)
+    ->update([
+        'username'=>$username
+    ]);
+    if($data){
+        return response()->json(['status'=>'1','msg'=>'Berhasil Diupdate']);
+    }else{
+        return response()->json(['status'=>'0','msg'=>'Gagal Diupdate']);
+    }
+}
 }
