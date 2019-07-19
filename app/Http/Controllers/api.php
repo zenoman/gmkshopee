@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class api extends Controller
 {
@@ -18,10 +19,12 @@ class api extends Controller
 }
 function upstat(Request $req){
     $kod=$req->kode;
+    $dt=date("Y-m-d H:i:s");
     $data=DB::table('tb_transaksi')
     ->where('no_resi',$kod)
     ->update([
-        'status'=>'dikirim'
+        'status'=>'dikirim',
+        'tglscan'=>$dt
     ]);
     if($data){
         return response()->json(['msg'=>'Berhasil Dikirim']);
@@ -73,6 +76,7 @@ function login(Request $req){
 function upakun(Request $req){
     $kode=$req->kode;
     $username=$req->username;
+    $pass=
     $data=DB::table('users')
     ->where('id',$kode)
     ->update([
