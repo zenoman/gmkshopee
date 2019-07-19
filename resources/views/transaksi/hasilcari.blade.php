@@ -99,7 +99,7 @@
 
                                          @if($row->status=='pending')
                                          <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-sm btn-primary"><i class="fa fa-truck"></i></a>
-                                        <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
+                                        <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
                                         <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>
                                         <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                         @elseif($row->status=='sukses')
@@ -107,7 +107,7 @@
                                         <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                         @elseif($row->status=='dikirim')
                                         
-                                        <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
+                                        <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
                                         <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>
                                         <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                         @else
