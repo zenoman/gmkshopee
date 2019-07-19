@@ -24,6 +24,7 @@ Route::get('/transaksi/listdatacancel','transaksicontroller@listdatacancel');
 Route::get('/transaksi/hapus/{kode}','transaksicontroller@hapusdata');
 Route::get('transaksi/listdatasukses','transaksicontroller@listdatasukses');
 Route::get('transaksi/caridata','transaksicontroller@carisemuadata');
+Route::get('transaksi/pending/{id}','transaksicontroller@uppending');
 
 //laporan
 Route::get('laporan/caridata','laporancontroller@cari');

@@ -79,7 +79,7 @@
                                         </button>
                                         <!-- <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-sm btn-primary"><i class="fa fa-truck"></i></a>
                                         <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a> -->
-                                       
+                                        <a href="{{url('/transaksi/pending/'.$row->no_resi)}}" onclick="return confirm('Kembalikan Kepending Data ?')" class="btn btn-primary btn-sm"><i class="fa fa-send"></i></a>
                                         <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                       </td>
                                   </tr>

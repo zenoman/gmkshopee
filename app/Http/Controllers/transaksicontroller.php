@@ -111,6 +111,14 @@ class transaksicontroller extends Controller
         ]);
         return back()->with('status','Transaksi Berhasil Dicancel');
     }
+    function uppending($kode){
+        $data = DB::table('tb_transaksi')
+        ->where('no_resi',$kode)
+        ->update([
+            'status'=>'pending'
+        ]);
+        return back()->with('status','Transaksi Berhasil Dicancel');
+    }
 
     public function listdatacancel(){
         $data = DB::table('tb_transaksi')
@@ -124,6 +132,7 @@ class transaksicontroller extends Controller
     public function suksesdata($kode){
         $data = DB::table('tb_transaksi')
         ->where('no_resi',$kode)
+        ->groupby('no_resi')
         ->update([
             'status'=>'sukses'
         ]);
