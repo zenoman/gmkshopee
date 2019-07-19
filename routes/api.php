@@ -21,3 +21,4 @@ Route::post('up-kirim','api@upstat');
 Route::post('up-tarik','api@uptarik');
 Route::post('login','api@login');
 Route::post('up-login','api@upakun');
+Route::get("kiriman",'api@kiriman');

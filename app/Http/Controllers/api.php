@@ -76,16 +76,24 @@ function login(Request $req){
 function upakun(Request $req){
     $kode=$req->kode;
     $username=$req->username;
-    $pass=
+    $pass=Hash::make($req->password);
     $data=DB::table('users')
     ->where('id',$kode)
     ->update([
-        'username'=>$username
+        'username'=>$username,
+        'password'=>$pass
     ]);
     if($data){
         return response()->json(['status'=>'1','msg'=>'Berhasil Diupdate']);
     }else{
         return response()->json(['status'=>'0','msg'=>'Gagal Diupdate']);
     }
+}
+function kiriman(){
+    $data=DB::table('tb_transaksi')
+    ->where('status','dikirim')
+    ->groupBy('no_resi')
+    ->orderBy('tglscan','DESC')->paginate(20);
+     return response()->json($data);
 }
 }
