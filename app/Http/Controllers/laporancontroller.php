@@ -63,7 +63,7 @@ class laporancontroller extends Controller
          if($status=='semua'){
          $namafile = "transaksi_tanggal_".$mulai."_sampai_".$sampai."_semua_status.xlsx";   
         }else{
-            $namafile = "transaksi_tanggal_".$mulai."_sampai_".$sampai."_".$status."xlsx";
+            $namafile = "transaksi_tanggal_".$mulai."_sampai_".$sampai."_".$status.".xlsx";
         }
      return Excel::download(new laporanexport($mulai,$sampai,$status),$namafile);
     }
