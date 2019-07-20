@@ -157,9 +157,9 @@ function del(no) {
                        
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                              <label>Nama</label>
+                              <label>Upload</label>
                                     <div class="nk-int-st">
-                                        <input type="file" class="form-control" name="filenya" required>
+                                        <input type="file" class="form-control" name="filenya" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
                                     </div>
                                      @csrf
                             </div>
@@ -239,10 +239,17 @@ function del(no) {
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                               <label>Username Pemesan</label>
                                     <div class="nk-int-st">
                                         <input type="text" class="form-control" name="username" required>
+                                    </div>
+                             
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                              <label>Nama Penerima</label>
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control" name="namapenerima" required>
                                     </div>
                              
                             </div>

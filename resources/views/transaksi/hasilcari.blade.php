@@ -6,10 +6,10 @@
 <div class="breadcomb-area">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-xs-12">
           <div class="breadcomb-list">
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="col-lg-6 col-md-6 col-xs-6 col-xs-12">
                 <div class="breadcomb-wp">
                   <div class="breadcomb-icon">
                     <i class="fa fa-list"></i>
@@ -20,7 +20,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3 text-right">
+              <div class="col-lg-6 col-md-6 col-xs-6 col-xs-3 text-right">
                  <button onclick="history.go(-1)" type="button" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Kembali</button>
                 
               </div>
@@ -35,7 +35,7 @@
     <div class="data-table-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-xs-12">
                     <div class="data-table-list">
                        @if (session('status'))
                         <div class="alert alert-success alert-dismissible alert-mg-b-0" role="alert">
@@ -86,7 +86,7 @@
                                       </td>
                                       <td class="text-center">
                                         <button 
-                                        class="btn btn-sm btn-default tampil"
+                                        class="btn btn-xs btn-default tampil"
                                         data-kode="{{$row->id}}"
                                         data-noresi="{{$row->no_resi}}"
                                         data-nopesanan="{{$row->no_pesanan}}"
@@ -98,21 +98,21 @@
                                         </button>
 
                                          @if($row->status=='pending')
-                                         <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-sm btn-primary"><i class="fa fa-truck"></i></a>
-                                        <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
-                                        <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>
-                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                         <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-xs btn-primary"><i class="fa fa-truck"></i></a>
+                                        <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-xs btn-warning"><i class="fa fa-ban"></i></a>
+                                        <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                         @elseif($row->status=='sukses')
                                         
-                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                         @elseif($row->status=='dikirim')
                                         
-                                        <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
-                                        <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>
-                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-xs btn-warning"><i class="fa fa-ban"></i></a>
+                                        <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                         @else
                                          
-                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                         @endif
                                         
                                        

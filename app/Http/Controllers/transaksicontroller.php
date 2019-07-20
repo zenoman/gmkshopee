@@ -15,7 +15,47 @@ class transaksicontroller extends Controller
     {
         $this->middleware('auth');
     }
-
+    public function hapusbanyak(Request $request){
+        $data ='';
+        if(!$request->pilihid){
+                return back()->with('statuserror','Tidak ada data yang dipilih');
+            }else{
+                 
+        foreach($request->pilihid as $id){
+           
+            if($request->status=='hapus'){
+                DB::table('tb_transaksi')->where('id',$id)->delete();
+            }else if($request->status=='dikirim'){
+                DB::table('tb_transaksi')
+                ->where('id',$id)
+                ->update([
+                    'status'=>'dikirim'
+                ]);
+            }else if($request->status=='dicancel'){
+                DB::table('tb_transaksi')
+                ->where('id',$id)
+                ->update([
+                    'status'=>'dicancel'
+                ]);
+             
+            }else if($request->status=='dipending'){
+                 DB::table('tb_transaksi')
+                ->where('id',$id)
+                ->update([
+                    'status'=>'pending'
+                ]);
+            }else{
+                 DB::table('tb_transaksi')
+                ->where('id',$id)
+                ->update([
+                    'status'=>'sukses'
+                ]);
+            }
+            }
+            
+        }
+        return back()->with('status','Data Berhasil Dimanipulasi');
+    }
     public function tambahdata()
     {
     	return view('transaksi/tambah');	
@@ -58,6 +98,7 @@ class transaksicontroller extends Controller
                 'waktu_pesan'           => $request->waktupesan,
                 'status'                => $request->status,
                 'username'              => $request->username,
+                'penerima'              => $request->namapenerima,
                 'waktu_harus_dikirim'   => $request->waktudikirim,
                 'produk'                => $request->produk[$i],
                 'nama_variasi'          => $request->variasi[$i],
@@ -73,6 +114,7 @@ class transaksicontroller extends Controller
                 'waktu_pesan'           => $request->waktupesan,
                 'status'                => $request->status,
                 'username'              => $request->username,
+                'penerima'              => $request->namapenerima,
                 'waktu_harus_dikirim'   => $request->waktudikirim,
                 'produk'                => $request->produk[$i],
                 'nama_variasi'          => $request->variasi[$i],
@@ -144,7 +186,10 @@ class transaksicontroller extends Controller
     }
 
     public function listdatasukses(){
-        $data = DB::table('tb_transaksi')->where('status','sukses')->paginate(20);
+        $data = DB::table('tb_transaksi')
+        ->where('status','sukses')
+         ->groupby('no_resi')
+         ->paginate(20);
         return view('transaksi/listdatasukses',['data'=>$data]);
     }
 

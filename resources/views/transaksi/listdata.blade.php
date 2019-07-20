@@ -6,10 +6,10 @@
 <div class="breadcomb-area">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-xs-12">
           <div class="breadcomb-list">
             <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="col-lg-6 col-md-6 col-xs-6 col-xs-12">
                 <div class="breadcomb-wp">
                   <div class="breadcomb-icon">
                     <i class="fa fa-list"></i>
@@ -20,7 +20,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-3 text-right">
+              <div class="col-lg-6 col-md-6 col-xs-6 col-xs-3 text-right">
                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalone"><i class="fa fa-search"></i> Cari Data</button>
                 
               </div>
@@ -35,17 +35,24 @@
     <div class="data-table-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-xs-12">
                     <div class="data-table-list">
                        @if (session('status'))
                         <div class="alert alert-success alert-dismissible alert-mg-b-0" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> {{ session('status') }}
                             </div>
                             @endif
+                             @if (session('statuserror'))
+                        <div class="alert alert-danger alert-dismissible alert-mg-b-0" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> {{ session('statuserror') }}
+                            </div>
+                            @endif
                         <div class="table-responsive">
+                          <form action="{{url('/transaksi/hapuspilihan')}}" method="post">
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                     <tr>
+                                      
                                         <th>No</th>
                                         <th>No. Resi</th>
                                         <th>No. Pesanan</th>
@@ -54,12 +61,14 @@
                                         <th>Penerima</th>
                                         <th>Status</th>
                                         <th class="text-center">Aksi</th>
+                                        <th  class="text-center"><input type="checkbox" onclick="toggle(this)"/></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                   <?php $i=1;?>
                                   @foreach($data as $row)
                                   <tr>
+
                                       <td>{{$i++}}</td>
                                       <td>{{$row->no_resi}}</td>
                                       <td>{{$row->no_pesanan}}</td>
@@ -69,8 +78,9 @@
                                       <td>{{$row->penerima}}</td>
                                       <td>{{$row->status}}</td>
                                       <td>
-                                        <button 
-                                        class="btn btn-sm btn-default tampil"
+                                        <button
+                                        type="button" 
+                                        class="btn btn-xs btn-default tampil"
                                         data-kode="{{$row->id}}"
                                         data-noresi="{{$row->no_resi}}"
                                         data-nopesanan="{{$row->no_pesanan}}"
@@ -80,11 +90,13 @@
                                         data-haruskirim="{{$row->waktu_harus_dikirim}}">
                                           <i class="fa fa-eye"></i>
                                         </button>
-                                        <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-sm btn-primary"><i class="fa fa-truck"></i></a>
-                                        <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
-                                        <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>
-                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{url('/transaksi/kirim/'.$row->no_resi)}}" onclick="return confirm('Kirim Barang ?')" class="btn btn-xs btn-primary"><i class="fa fa-truck"></i></a>
+                                        <a href="{{url('/transaksi/cancel/'.$row->no_resi)}}" onclick="return confirm('Cancel Transaksi ?')" class="btn btn-xs btn-warning"><i class="fa fa-ban"></i></a>
+                                        <a href="{{url('/transaksi/sukses/'.$row->no_resi)}}" onclick="return confirm('Transaksi Sukses ?')" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                                        <a href="{{url('/transaksi/hapus/'.$row->no_resi)}}" onclick="return confirm('Hapus Data ?')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                                        
                                       </td>
+                                      <td align="center">&nbsp;&nbsp;&nbsp;<input name="pilihid[]" type="checkbox"  id="checkbox[]" value="{{$row->id}}"  ></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
@@ -98,9 +110,27 @@
                                         <th>Penerima</th>
                                         <th>Status</th>
                                         <th class="text-center">Aksi</th>
+                                        <th  class="text-center"><input type="checkbox" onclick="toggle(this)"/></th>
                                     </tr>
                                 </tfoot>
                             </table>
+                            <hr>
+                              <label>Aksi Data Terpilih</label>
+                                <div class="nk-int-st">
+                                <div class="bootstrap-select fm-cmp-mg">
+                                    <select class="selectpicker" name="status">
+                                      <option value="hapus">hapus</option>
+                                      <option value="dikirim">dikirim</option>
+                                      <option value="dicancel">dicancel</option>
+                                      <option value="sukses">Sukses</option>
+                                    </select>
+                                     <button onclick="return confirm('Yakin nih datanya udah bener ?')" type="submit" class="btn btn-success btn-xs"> Submit</button>
+                                </div>
+                                </div>
+                           
+         
+            {{csrf_field()}}
+                        </form>
                              {{ $data->links() }}
                         </div>
                     </div>
@@ -196,7 +226,7 @@
                        <div class="form-example-int mg-t-15">
                             <div class="form-group">
                                 <div class="nk-int-st">
-                                    <input type="text" name="cari" class="form-control input-sm" placeholder="Masukan no. resi / no. pemesanan / waktu pesan / pemesan" required>
+                                    <input type="text" name="cari" class="form-control input-xs" placeholder="Masukan no. resi / no. pemesanan / waktu pesan / pemesan" required>
                                 </div>
                             </div>
                         </div>
@@ -264,5 +294,11 @@
             });
     $('#myModalthree').modal('toggle');
   });
+  function toggle(source) {
+    checkboxes = document.getElementsByName('pilihid[]');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = source.checked;
+    }
+    }
     </script>
 @endsection

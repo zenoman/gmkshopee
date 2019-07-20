@@ -11,6 +11,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('admin','admincontroller');
 
 //transaksi
+Route::post('/transaksi/hapuspilihan','transaksicontroller@hapusbanyak');
 Route::get('transaksi/tambahdata','transaksicontroller@tambahdata');
 Route::post('transaksi','transaksicontroller@importtransaksi');
 Route::get('transaksi/listdata','transaksicontroller@listdata');

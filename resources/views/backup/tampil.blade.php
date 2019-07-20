@@ -54,7 +54,7 @@
                         <div class="row">
                           
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                <a href="#" id="cetakpending">
+                                <a href="{{url('export-laporan/'.$tglmulai.'/'.$tglsampai.'/pending')}}">
                                 <div class="invoice-hs">
                                     <span>Exsport Transaksi Pending</span>
                                     <h2>{{$pending}} Data</h2>
@@ -64,7 +64,7 @@
                             </div>
                             
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                <a href="#" id="cetakdikirim">
+                                <a href="{{url('export-laporan/'.$tglmulai.'/'.$tglsampai.'/dikirim')}}">
                                 <div class="invoice-hs">
                                     <span>Cetak Data Transaksi Dikirim</span>
                                     <h2>{{$dikirim}} Data</h2>
@@ -72,7 +72,7 @@
                               </a>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                <a href="#" id="cetakdicancel">
+                                <a href="{{url('export-laporan/'.$tglmulai.'/'.$tglsampai.'/dicancel')}}">
                                 <div class="invoice-hs">
                                     <span>Cetak Data Transaksi Dicancel</span>
                                      <h2>{{$dicancel}} Data</h2>
@@ -80,7 +80,7 @@
                               </a>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                               <a href="#" id="cetaksukses">
+                               <a href="{{url('export-laporan/'.$tglmulai.'/'.$tglsampai.'/sukses')}}">
                                 <div class="invoice-hs">
                                     <span>Cetak Data Transaksi Sukses</span>
                                      <h2>{{$sukses}} Data</h2>
