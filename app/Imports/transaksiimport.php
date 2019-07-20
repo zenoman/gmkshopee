@@ -48,7 +48,8 @@ class transaksiimport implements ToCollection
         		'jumlah'=>$jumlah[1],
         		'sku'=>$sku[1],
         		'sku_induk'=>$sku_induk[1],
-                'penerima'=>$row[10] 
+                'penerima'=>$row[10],
+                'barang_real'=>$row[8] 
                 ];
 					unset($dataproduk);
                     $dataproduk = array();

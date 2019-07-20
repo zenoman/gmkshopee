@@ -1,6 +1,7 @@
 @extends('layouts.appadmin')
 @section('css')
  <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select/bootstrap-select.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/js/timepicker.min.css')}}">
 @endsection
 @section('content')
 <div class="breadcomb-area">
@@ -53,9 +54,20 @@
                                    <label>Mulai Tanggal</label>
                                  <input type="date" class="form-control" name="tglmulai" required>
                                 </div>
+                                <div class="col-md-6">
+                                   <label>Mulai Jam</label>
+                                 <input type="text" id="time" class="form-control" name="jammulai" required>
+                                </div>
+                                
                                  <div class="col-md-6">
+                                  <br>
                                   <label>Sampai Tanggal</label>
                                  <input type="date" class="form-control" name="tglsampai" required>
+                                </div>
+                                <div class="col-md-6">
+                                  <br>
+                                   <label>Sampai Jam</label>
+                                 <input type="text" id="time2" class="form-control" name="jamselesai" required>
                                 </div>
                               </div>
                             </div>
@@ -91,5 +103,20 @@
     </div>
 @endsection
 @section('js')
+<script src="{{asset('assets/js/timepicker.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap-select/bootstrap-select.js')}}"></script>
+<script>
+ var timepicker = new TimePicker(['time','time2'], {
+  lang: 'en',
+  theme: 'light'
+});
+
+timepicker.on('change', function(evt) {
+  
+  var value = (evt.hour || '00') + ':' + (evt.minute || '00')+ ':' + (evt.second || '00');
+  evt.element.value = value;
+
+});
+
+</script>
 @endsection

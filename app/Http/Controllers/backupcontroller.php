@@ -15,48 +15,48 @@ class backupcontroller extends Controller
     	return view('backup/caridata');
     }
     public function tampil(Request $request){
-    	$tglmulai = $request->tglmulai;
-    	$tglsampai = $request->tglsampai;
+    	$tglmulai = $request->tglmulai.' '.$request->jammulai;
+    	$tglsampai = $request->tglsampai.' '.$request->jamselesai;
 
     	 $pending = DB::table('tb_transaksi')
         ->where('status','pending')
-        ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+        ->wherebetween('tglscan',[$tglmulai,$tglsampai])
         ->count();
 
         $dikirim = DB::table('tb_transaksi')
         ->where('status','dikirim')
-        ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+        ->wherebetween('tglscan',[$tglmulai,$tglsampai])
         ->count();
 
         $sukses = DB::table('tb_transaksi')
         ->where('status','sukses')
-        ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+        ->wherebetween('tglscan',[$tglmulai,$tglsampai])
         ->count();
 
         $dicancel = DB::table('tb_transaksi')
         ->where('status','dicancel')
-        ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+        ->wherebetween('tglscan',[$tglmulai,$tglsampai])
         ->count();
         //================================================
 
         $datapending = DB::table('tb_transaksi')
         ->where('status','pending')
-        ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+        ->wherebetween('tglscan',[$tglmulai,$tglsampai])
         ->get();
 
         $datadikirim = DB::table('tb_transaksi')
         ->where('status','dikirim')
-        ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+        ->wherebetween('tglscan',[$tglmulai,$tglsampai])
         ->get();
 
         $datasukses = DB::table('tb_transaksi')
         ->where('status','sukses')
-        ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+        ->wherebetween('tglscan',[$tglmulai,$tglsampai])
         ->get();
 
         $datadicancel = DB::table('tb_transaksi')
         ->where('status','dicancel')
-        ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+        ->wherebetween('tglscan',[$tglmulai,$tglsampai])
         ->get();
     	
     	return view('backup/tampil',[
@@ -75,7 +75,7 @@ class backupcontroller extends Controller
 
     public function hapus($mulai,$sampai){
     	DB::table('tb_transaksi')
-        ->wherebetween('waktu_pesan',[$mulai,$sampai])
+        ->wherebetween('tglscan',[$mulai,$sampai])
         ->delete();
         return redirect('/home')->with('status','Backup Data Sukses');
     }

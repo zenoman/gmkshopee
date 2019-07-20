@@ -159,7 +159,7 @@ function del(no) {
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                               <label>Upload</label>
                                     <div class="nk-int-st">
-                                        <input type="file" class="form-control" name="filenya" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+                                        <input type="file" class="form-control" name="filenya" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" required>
                                     </div>
                                      @csrf
                             </div>

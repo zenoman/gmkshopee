@@ -20,14 +20,14 @@ class laporanexport implements FromCollection, WithHeadings, ShouldAutoSize
     {
     	if($this->status=='semua'){
     		return DB::table('tb_transaksi')
-        	->select(DB::raw('no_resi,no_pesanan,waktu_pesan,status,username,waktu_harus_dikirim,produk,nama_variasi,jumlah,harga,sku,sku_induk'))
-    		->whereBetween('waktu_pesan',[$this->tgl1,$this->tgl2])
+        	->select(DB::raw('no_resi,no_pesanan,waktu_pesan,status,username,waktu_harus_dikirim,barang_real,tglscan'))
+    		->whereBetween('tglscan',[$this->tgl1,$this->tgl2])
             ->orderby('id','desc')
     		->get();
     	}else{
     	return DB::table('tb_transaksi')
-        	->select(DB::raw('no_resi,no_pesanan,waktu_pesan,status,username,waktu_harus_dikirim,produk,nama_variasi,jumlah,harga,sku,sku_induk'))
-    		->whereBetween('waktu_pesan',[$this->tgl1,$this->tgl2])
+        	->select(DB::raw('no_resi,no_pesanan,waktu_pesan,status,username,waktu_harus_dikirim,barang_real,tglscan'))
+    		->whereBetween('tglscan',[$this->tgl1,$this->tgl2])
             ->where('status',$this->status)
             ->orderby('id','desc')
     		->get();	
@@ -45,11 +45,7 @@ class laporanexport implements FromCollection, WithHeadings, ShouldAutoSize
             'username',
             'waktu harus dikirim',
             'Nama Produk',
-            'Varian',
-            'Jumlah',
-            'Harga',
-            'SKU',
-            'SKU Induk'
+            'Tanggal Scan'
         ];
     }
 }

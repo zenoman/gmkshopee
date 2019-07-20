@@ -26,31 +26,31 @@ class laporancontroller extends Controller
 
     public function tampil(Request $request){
     	$status = $request->status;
-    	$tglmulai	= $request->tglmulai;
-    	$tglsampai = $request->tglsampai;
-
+    	$tglmulai	= $request->tglmulai.' '.$request->jammulai;
+    	$tglsampai = $request->tglsampai.' '.$request->jamselesai;
+        
     	if($status=='semua'){
     		$data = DB::table('tb_transaksi')
-    		->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+    		->wherebetween('tglscan',[$tglmulai,$tglsampai])
             ->groupby('no_resi')
             ->orderby('id','desc')
     		->get();
 
             $data2 = DB::table('tb_transaksi')
-            ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+            ->wherebetween('tglscan',[$tglmulai,$tglsampai])
             ->orderby('id','desc')
             ->get();
     	}else{
     		$data = DB::table('tb_transaksi')
     		->where('status',$status)
-    		->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+    		->wherebetween('tglscan',[$tglmulai,$tglsampai])
             ->groupby('no_resi')
             ->orderby('id','desc')
     		->get();
 
             $data2 = DB::table('tb_transaksi')
             ->where('status',$status)
-            ->wherebetween('waktu_pesan',[$tglmulai,$tglsampai])
+            ->wherebetween('tglscan',[$tglmulai,$tglsampai])
             ->orderby('id','desc')
             ->get();
     	}
