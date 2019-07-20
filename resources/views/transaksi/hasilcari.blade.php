@@ -42,7 +42,13 @@
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> {{ session('status') }}
                             </div>
                             @endif
+                            @if (session('statuserror'))
+                        <div class="alert alert-danger alert-dismissible alert-mg-b-0" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> {{ session('statuserror') }}
+                            </div>
+                            @endif
                         <div class="table-responsive">
+                            <form action="{{url('/transaksi/hapuspilihan')}}" method="post">
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                     <tr>
@@ -53,6 +59,7 @@
                                         <th>Pemesan</th>
                                         <th>Status</th>
                                         <th class="text-center">Aksi</th>
+                                        <th  class="text-center"><input type="checkbox" onclick="toggle(this)"/></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,7 +92,8 @@
                                         @endif
                                       </td>
                                       <td class="text-center">
-                                        <button 
+                                        <button
+                                        type="button" 
                                         class="btn btn-xs btn-default tampil"
                                         data-kode="{{$row->id}}"
                                         data-noresi="{{$row->no_resi}}"
@@ -117,6 +125,7 @@
                                         
                                        
                                       </td>
+                                       <td align="center">&nbsp;&nbsp;&nbsp;<input name="pilihid[]" type="checkbox"  id="checkbox[]" value="{{$row->id}}"  ></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
@@ -129,9 +138,27 @@
                                         <th>Pemesan</th>
                                         <th>Status</th>
                                         <th class="text-center">Aksi</th>
+                                        <th  class="text-center"><input type="checkbox" onclick="toggle(this)"/></th>
                                     </tr>
                                 </tfoot>
                             </table>
+                             <hr>
+                              <label>Aksi Data Terpilih</label>
+                                <div class="nk-int-st">
+                                <div class="bootstrap-select fm-cmp-mg">
+                                    <select class="selectpicker" name="status">
+                                      <option value="hapus">hapus</option>
+                                      <option value="dikirim">dikirim</option>
+                                      <option value="dicancel">dicancel</option>
+                                      <option value="sukses">Sukses</option>
+                                    </select>
+                                     <button onclick="return confirm('Yakin nih datanya udah bener ?')" type="submit" class="btn btn-success btn-xs"> Submit</button>
+                                </div>
+                                </div>
+                           
+         
+            {{csrf_field()}}
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -272,5 +299,11 @@
             });
     $('#myModalthree').modal('toggle');
   });
+   function toggle(source) {
+    checkboxes = document.getElementsByName('pilihid[]');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+      checkboxes[i].checked = source.checked;
+    }
+    }
     </script>
 @endsection
