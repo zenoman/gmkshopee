@@ -24,7 +24,14 @@ class laporanexport implements FromCollection, WithHeadings, ShouldAutoSize
     		->whereBetween('tglscan',[$this->tgl1,$this->tgl2])
             ->orderby('id','desc')
     		->get();
-    	}else{
+    	}else if($this->status=='pending'){
+            return DB::table('tb_transaksi')
+            ->select(DB::raw('no_resi,no_pesanan,waktu_pesan,status,username,waktu_harus_dikirim,barang_real,tglscan'))
+            ->whereBetween('waktu_pesan',[$this->tgl1,$this->tgl2])
+            ->where('status',$this->status)
+            ->orderby('id','desc')
+            ->get();
+        }else{
     	return DB::table('tb_transaksi')
         	->select(DB::raw('no_resi,no_pesanan,waktu_pesan,status,username,waktu_harus_dikirim,barang_real,tglscan'))
     		->whereBetween('tglscan',[$this->tgl1,$this->tgl2])

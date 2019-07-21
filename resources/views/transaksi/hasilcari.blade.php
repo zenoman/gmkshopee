@@ -56,6 +56,7 @@
                                         <th>No. Resi</th>
                                         <th>No. Pesanan</th>
                                         <th>Waktu Pesan</th>
+                                        <th>Waktu scan</th>
                                         <th>Pemesan</th>
                                         <th>Status</th>
                                         <th class="text-center">Aksi</th>
@@ -71,6 +72,7 @@
                                       <td>{{$row->no_pesanan}}</td>
 
                                       <td>{{$row->waktu_pesan}}</td>
+                                      <td>{{$row->tglscan}}</td>
                                       <td>{{$row->username}}</td>
                                       <td>
                                         @if($row->status=='pending')
@@ -135,6 +137,7 @@
                                         <th>No. Resi</th>
                                         <th>No. Pesanan</th>
                                         <th>Waktu Pesan</th>
+                                        <th>Waktu scan</th>
                                         <th>Pemesan</th>
                                         <th>Status</th>
                                         <th class="text-center">Aksi</th>

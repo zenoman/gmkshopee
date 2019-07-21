@@ -69,6 +69,12 @@
                                    <label>Sampai Jam</label>
                                  <input type="text" id="time2" class="form-control" name="jamselesai" required>
                                 </div>
+                                <div class="col-md-12">
+                                  <br><br>
+                                  <p class="text-muted">
+                                    NB: laporan di sorting berdasarkan waktu scan, kecuali data dengan status pending, pending di sorting berdasarkan waktu pesan
+                                  </p>
+                                </div>
                               </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">

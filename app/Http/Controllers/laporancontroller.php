@@ -28,7 +28,8 @@ class laporancontroller extends Controller
     	$status = $request->status;
     	$tglmulai	= $request->tglmulai.' '.$request->jammulai;
     	$tglsampai = $request->tglsampai.' '.$request->jamselesai;
-        
+        $tglmulai2   = $request->tglmulai;
+        $tglsampai2 = $request->tglsampai;
     	if($status=='semua'){
     		$data = DB::table('tb_transaksi')
     		->wherebetween('tglscan',[$tglmulai,$tglsampai])
@@ -40,7 +41,22 @@ class laporancontroller extends Controller
             ->wherebetween('tglscan',[$tglmulai,$tglsampai])
             ->orderby('id','desc')
             ->get();
-    	}else{
+            return view('laporan/tampildata',['data'=>$data,'data2'=>$data2,'tglmulai'=>$tglmulai,'tglsampai'=>$tglsampai,'status'=>$status]);
+    	}else if($status=='pending'){
+        $data = DB::table('tb_transaksi')
+        ->where('status',$status)
+            ->wherebetween('waktu_pesan',[$tglmulai2,$tglsampai2])
+            ->groupby('no_resi')
+            ->orderby('id','desc')
+            ->get();
+
+            $data2 = DB::table('tb_transaksi')
+            ->where('status',$status)
+            ->wherebetween('waktu_pesan',[$tglmulai2,$tglsampai2])
+            ->orderby('id','desc')
+            ->get();
+            return view('laporan/tampildata',['data'=>$data,'data2'=>$data2,'tglmulai'=>$tglmulai2,'tglsampai'=>$tglsampai2,'status'=>$status]);
+        }else{
     		$data = DB::table('tb_transaksi')
     		->where('status',$status)
     		->wherebetween('tglscan',[$tglmulai,$tglsampai])
@@ -53,9 +69,10 @@ class laporancontroller extends Controller
             ->wherebetween('tglscan',[$tglmulai,$tglsampai])
             ->orderby('id','desc')
             ->get();
+            return view('laporan/tampildata',['data'=>$data,'data2'=>$data2,'tglmulai'=>$tglmulai,'tglsampai'=>$tglsampai,'status'=>$status]);
     	}
 
-    	return view('laporan/tampildata',['data'=>$data,'data2'=>$data2,'tglmulai'=>$tglmulai,'tglsampai'=>$tglsampai,'status'=>$status]);
+    	
     }
     //==============================================================
     public function exsportlaporan($mulai, $sampai, $status){

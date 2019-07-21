@@ -53,6 +53,7 @@
                                         <th>No. Resi</th>
                                         <th>No. Pesanan</th>
                                         <th>Waktu Pesan</th>
+                                        <th>Waktu scan</th>
                                         <th>Pemesan</th>
                                         <th>Penerima</th>
                                         <th>Status</th>
@@ -69,6 +70,7 @@
                                       <td>{{$row->no_pesanan}}</td>
 
                                       <td>{{$row->waktu_pesan}}</td>
+                                      <td>{{$row->tglscan}}</td>
                                       <td>{{$row->username}}</td>
                                       <td>{{$row->penerima}}</td>
                                       <td>{{$row->status}}</td>
@@ -100,6 +102,7 @@
                                         <th>No. Resi</th>
                                         <th>No. Pesanan</th>
                                         <th>Waktu Pesan</th>
+                                        <th>Waktu scan</th>
                                         <th>Pemesan</th>
                                         <th>Penerima</th>
                                         <th>Status</th>
