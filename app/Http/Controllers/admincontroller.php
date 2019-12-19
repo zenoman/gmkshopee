@@ -123,7 +123,6 @@ class admincontroller extends Controller
      */
     public function destroy($id)
     {
-        dd('hapus data');
         DB::table('users')->where('id',$id)->delete();
          return redirect('admin')
         ->with('status','Hapus Data Sukses');

@@ -103,7 +103,7 @@
                                         <th class="text-center">#</th>
                                     </tr>
                                 </tfoot>
-                            </table>
+                            </table> 
                         </div>
                     </div>
                 </div>
