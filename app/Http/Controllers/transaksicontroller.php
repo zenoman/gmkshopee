@@ -101,6 +101,13 @@ class transaksicontroller extends Controller
     public function tambah(Request $request){
         $data = $request->produk;
         for($i=0; $i < count($data) ; $i++){
+            if($request->sku[$i]==''){
+                $sku = "-";
+            }
+            
+            if($request->skuinduk[$i]==''){
+                $skuinduk = "-";
+            }
            if($i == count($data)-1){
                 $datanya[] = [
                 'no_resi'               => $request->noresi,
@@ -114,8 +121,8 @@ class transaksicontroller extends Controller
                 'nama_variasi'          => $request->variasi[$i],
                 'jumlah'                => $request->jumlah[$i],
                 'harga'                 => $request->harga[$i],
-                'sku'                   => $request->sku[$i],
-                'sku_induk'             => $request->skuinduk[$i]
+                'sku'                   => $sku,
+                'sku_induk'             => $skuinduk
             ];
             }else{
                 $datanya[] = [
@@ -130,8 +137,8 @@ class transaksicontroller extends Controller
                 'nama_variasi'          => $request->variasi[$i],
                 'jumlah'                => $request->jumlah[$i],
                 'harga'                 => $request->harga[$i],
-                'sku'                   => $request->sku[$i],
-                'sku_induk'             => $request->skuinduk[$i]
+                'sku'                   => $sku,
+                'sku_induk'             => $skuinduk
             ];
             }
            }

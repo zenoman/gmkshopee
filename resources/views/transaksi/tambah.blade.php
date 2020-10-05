@@ -62,13 +62,13 @@ function addInput(divName){
                             '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">'+
                               '<label>SKU</label>'+
                                     '<div class="nk-int-st">'+
-                                        '<input type="text" class="form-control" name="sku[]" required>'+
+                                        '<input type="text" class="form-control" name="sku[]">'+
                                     '</div>'+
                             '</div>'+
                             '<div class="col-lg-3 col-md-3 col-sm-5 col-xs-5">'+
                               '<label>SKU Induk</label>'+
                                     '<div class="nk-int-st">'+
-                                        '<input type="text" class="form-control" name="skuinduk[]" required>'+
+                                        '<input type="text" class="form-control" name="skuinduk[]">'+
                                     '</div>'+
                              
                             '</div>'+
@@ -320,13 +320,13 @@ function del(no) {
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                               <label>SKU</label>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" name="sku[]" required>
+                                        <input type="text" class="form-control" name="sku[]">
                                     </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
                               <label>SKU Induk</label>
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control" name="skuinduk[]" required>
+                                        <input type="text" class="form-control" name="skuinduk[]">
                                     </div>
                             </div>
                             <br>

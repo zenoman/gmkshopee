@@ -27,35 +27,71 @@ class transaksiimport implements ToCollection
 				$dataproduk[$no] = $halo[$i];
                 $nomer++;
                 $no++;
-                if($nomer==7){
-                $produk = explode(':',$dataproduk[0]);
-                $variasi = explode(':',$dataproduk[1]);
-				$harga = explode(':',$dataproduk[2]);
-                $jumlah = explode(':',$dataproduk[3]);
-                $sku = explode(':',$dataproduk[4]);
-                $sku_induk = explode(':', $dataproduk[5]);
-                $waktu_pesan = explode(' ', $row[2]);
-                $waktu_kirim = explode(' ', $row[7]);
-                $data[] = [
-        		'no_resi' 		=> $row[0],
-        		'no_pesanan'	=> $row[1],
-        		'waktu_pesan'	=> $waktu_pesan[0],
-        		'username'		=> $row[5],
-        		'waktu_harus_dikirim' => $waktu_kirim[0],
-        		'produk'	=> $produk[1],
-        		'nama_variasi'=> $variasi[1],
-        		'harga'=> $harga[1],
-        		'jumlah'=>$jumlah[1],
-        		'sku'=>$sku[1],
-        		'sku_induk'=>$sku_induk[1],
-                'penerima'=>$row[10],
-                'barang_real'=>$row[8] 
-                ];
-					unset($dataproduk);
-                    $dataproduk = array();
-					$nomer = 1;
-                    $no=0;
-				}
+                if($nomer==6){
+                    $sku = explode(':',$dataproduk[4]);
+                    if($sku[1]=='' || $sku[1]==' '){
+                        $final_sku = '-';
+                        $final_sku_induk = '-';
+                        $produk = explode(':',$dataproduk[0]);
+                        $variasi = explode(':',$dataproduk[1]);
+                        $harga = explode(':',$dataproduk[2]);
+                        $jumlah = explode(':',$dataproduk[3]);
+                        $sku = explode(':',$dataproduk[4]);
+                        $waktu_pesan = explode(' ', $row[2]);
+                        $waktu_kirim = explode(' ', $row[7]);
+                        $data[] = [
+                            'no_resi' 		=> $row[0],
+                            'no_pesanan'	=> $row[1],
+                            'waktu_pesan'	=> $waktu_pesan[0],
+                            'username'		=> $row[5],
+                            'waktu_harus_dikirim' => $waktu_kirim[0],
+                            'produk'	=> $produk[1],
+                            'nama_variasi'=> $variasi[1],
+                            'harga'=> $harga[1],
+                            'jumlah'=>$jumlah[1],
+                            'sku'=>'-',
+                            'sku_induk'=>'-',
+                            'penerima'=>$row[10],
+                            'barang_real'=>$row[8] 
+                        ];
+                        unset($dataproduk);
+                        $dataproduk = array();
+                        $nomer = 1;
+                        $no=0;
+                    }
+                
+					
+				}elseif($nomer==7){
+                        $sku = explode(':',$dataproduk[4]);
+                        $produk = explode(':',$dataproduk[0]);
+                        $variasi = explode(':',$dataproduk[1]);
+                        $harga = explode(':',$dataproduk[2]);
+                        $jumlah = explode(':',$dataproduk[3]);
+                        $sku = explode(':',$dataproduk[4]);
+
+                        $sku_induk = explode(':', $dataproduk[5]);
+                        $waktu_pesan = explode(' ', $row[2]);
+                        $waktu_kirim = explode(' ', $row[7]);
+                        $data[] = [
+                            'no_resi' 		=> $row[0],
+                            'no_pesanan'	=> $row[1],
+                            'waktu_pesan'	=> $waktu_pesan[0],
+                            'username'		=> $row[5],
+                            'waktu_harus_dikirim' => $waktu_kirim[0],
+                            'produk'	=> $produk[1],
+                            'nama_variasi'=> $variasi[1],
+                            'harga'=> $harga[1],
+                            'jumlah'=>$jumlah[1],
+                            'sku'=>$sku[1],
+                            'sku_induk'=>$sku_induk[1],
+                            'penerima'=>$row[10],
+                            'barang_real'=>$row[8] 
+                        ];
+                        unset($dataproduk);
+                        $dataproduk = array();
+                        $nomer = 1;
+                        $no=0;
+                }
 			}
         	
         }
